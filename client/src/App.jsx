@@ -1,13 +1,15 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ChatWindow from "./components/ChatWindow";
 import Sidebar from "./components/Sidebar";
-import SymptomInputPage from "./components/Symptom";
+import Symptom from "./components/Symptom";
+import Contacts from "./components/Contacts";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<SymptomInputPage />} />
+        <Route path="/" element={<Symptom />} />
+        <Route path="/contacts" element={<Contacts />} />
         <Route
           path="/chats"
           element={

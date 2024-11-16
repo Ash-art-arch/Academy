@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import image from "../constants/image";
+import styled from 'styled-components';
 
 function Symptom() {
   const [symptom, setSymptom] = useState("");
@@ -11,6 +12,47 @@ function Symptom() {
 
   const handleSymptomChange = (e) => {
     setSymptom(e.target.value);
+  };
+
+  const getSpecialistContact = (disease) => {
+    switch (disease.toLowerCase()) {
+      case "acne":
+      case "psoriasis":
+      case "impetigo":
+      case "fungal infection":
+      case "chicken pox":
+        return "Dermatologist";
+      case "allergy":
+        return "Allergist";
+      case "arthritis":
+        return "Rheumatologist";
+      case "bronchial asthma":
+      case "pneumonia":
+        return "Pulmonologist";
+      case "cervical spondylosis":
+        return "Orthopedist";
+      case "dengue":
+      case "malaria":
+      case "typhoid":
+      case "urinary tract infection":
+        return "Infectious Disease Specialist";
+      case "diabetes":
+        return "Endocrinologist";
+      case "gastroesophageal reflux disease":
+      case "peptic ulcer disease":
+        return "Gastroenterologis";
+      case "hypertension":
+        return "Cardiologist";
+      case "jaundice":
+        return "Hepatologist";
+      case "common cold":
+      case "dimorphic hemorrhoids":
+        return "General Practitioner";
+      case "drug reaction":
+        return "Internal Medicine Specialist";
+      default:
+        return null;
+    }
   };
 
   const handlePredict = async () => {
@@ -26,15 +68,20 @@ function Symptom() {
     }
 
     try {
-      const response = await fetch("https://a9c7-34-45-150-78.ngrok-free.app/predict", {  /*replace https://....free.app*/
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text: symptom }),
-      });
+      const response = await fetch(
+        "https://1c7a-34-45-150-78.ngrok-free.app/predict",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text: symptom }),
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.error || "Failed to fetch prediction. Please try again.");
+        throw new Error(
+          errorData.error || "Failed to fetch prediction. Please try again."
+        );
       }
 
       const data = await response.json();
@@ -52,13 +99,13 @@ function Symptom() {
       className="w-full h-screen flex flex-col items-center justify-center bg-auto bg-center"
       style={{ backgroundImage: `url(${image.background})` }}
     >
-      <div className="p-20 text-center flex flex-col items-center justify-around bg-[#293446]/77 rounded-xl shadow-lg backdrop-blur-sm border border-gray-500">
+      <div className="px-20 pt-20 pb-5 text-center flex flex-col items-center justify-around bg-[#293446]/77 rounded-xl shadow-lg backdrop-blur-sm border border-gray-500">
         <input
           type="text"
           value={symptom}
           onChange={handleSymptomChange}
           placeholder="Describe your Symptoms"
-          className="px-10 py-5 text-xl text-white bg-gray-900 border border-gray-300 rounded mb-5 w-80"
+          className="px-10 py-5 text-xl text-white text-center bg-gray-900 border border-gray-300 rounded mb-5 w-80"
         />
 
         <button
@@ -76,14 +123,26 @@ function Symptom() {
         )}
 
         {prediction && (
-          <div className="text-xl text-white font-bold px-14 py-3.5 my-5 border border-green-300 rounded">
-            Predicted Disease: {prediction}
+          <div className="text-xl text-green-300 font-bold px-14 py-3.5 my-5 border border-green-300 rounded">
+            Predicted Disease: <span className="text-white">{prediction}</span>
           </div>
+        )}
+
+        {prediction && (
+          <StyledWrapper>
+            <button
+              onClick={() => navigate("/contacts")}
+             className="btn"
+            >
+             Click Here to Contact a{" "}
+              {getSpecialistContact(prediction)}
+           </button>
+          </StyledWrapper>
         )}
 
         <button
           onClick={() => navigate("/chats")}
-          className="text-xl px-8 py-3.5 mt-5 border border-green-300 text-green-300 rounded"
+          className="text-xl px-8 pb-3.5 mt-2 text-green-300 underline"
         >
           Go to Previous Chats
         </button>
@@ -91,5 +150,36 @@ function Symptom() {
     </div>
   );
 }
+
+const StyledWrapper = styled.div`
+  .btn {
+   margin: 15px 0px;
+   background-color: #00BFA6;
+   padding: 14px 40px;
+   color: #fff;
+   text-transform: uppercase;
+   letter-spacing: 2px;
+   cursor: pointer;
+   border-radius: 10px;
+   border: 2px dashed #00BFA6;
+   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+   transition: .4s;
+  }
+
+  .btn span:last-child {
+   display: none;
+  }
+
+  .btn:hover {
+   transition: .4s;
+   border: 2px dashed #00BFA6;
+   background-color: #fff;
+   color: #00BFA6;
+  }
+
+  .btn:active {
+   background-color: #87dbd0;
+  }`;
+
 
 export default Symptom;

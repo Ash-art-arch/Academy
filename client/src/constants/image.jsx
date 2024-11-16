@@ -9,5 +9,9 @@ import mdoc from "../assets/mdoc.png";
 import fdoc from "../assets/fdoc.png";
 import person from "../assets/person.png";
 import background from "../assets/background.png";
+import male from "../assets/male.jpg";
+import male2 from "../assets/male2.jpg";
+import female from "../assets/female.jpg";
+import female2 from "../assets/female2.jpg";
 
-export default { attach, microphone, phone, dots, settings, smile, video, mdoc, fdoc, person, background };
+export default { attach, microphone, phone, dots, settings, smile, video, mdoc, fdoc, person, background, male, male2, female, female2 };
