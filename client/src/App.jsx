@@ -5,7 +5,9 @@ import Sidebar from "./components/Sidebar";
 import Symptom from "./components/Symptom";
 import Contacts from "./components/Contacts";
 
+
 function App() {
+
   return (
     <Router>
       <Routes>
