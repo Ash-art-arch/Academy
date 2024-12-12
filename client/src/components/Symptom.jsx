@@ -69,7 +69,7 @@ function Symptom() {
 
     try {
       const response = await fetch(
-        "https://1c7a-34-45-150-78.ngrok-free.app/predict",
+        "https://1c7a-34-45-150-78.ngrok-free.app/predict", //HAVE to change this each new session
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
