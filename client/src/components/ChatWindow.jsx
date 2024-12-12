@@ -36,7 +36,7 @@ function ChatWindow() {
         </div>
         <div className="flex justify-end">
           <div className="bg-green-700 text-white p-3 rounded-lg max-w-xs">
-            I am doing great Nigger
+            I am doing great, thank to you!
           </div>
         </div>
       </div>
