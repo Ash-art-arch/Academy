@@ -30,9 +30,9 @@ function ChatWindow() {
           </div>
         </div>
         <div className="space-x-8 flex text-gray-400">
-          <img src={image.phone} className="w-7" alt="Phone" />
-          <img src={image.video} className="w-7" alt="Video" />
-          <img src={image.dots} className="w-7" alt="3 Dots" />
+          <img src={image.phone} className="w-10 hover:bg-gray-600 p-2 rounded-full hover:scale-110 cursor-pointer" alt="Phone" />
+          <img src={image.video} className="w-10 hover:bg-gray-600 p-2 rounded-full hover:scale-110 cursor-pointer" alt="Video" />
+          <img src={image.dots} className="w-10 hover:bg-gray-600 p-2 rounded-full hover:scale-110 cursor-pointer" alt="3 Dots" />
         </div>
       </div>
 
@@ -52,7 +52,7 @@ function ChatWindow() {
         </div>
         <div className="flex justify-end">
           <div className="bg-green-700 text-white p-3 rounded-lg max-w-xs">
-            I am not doing so well Sir
+            Hello doctor
           </div>
         </div>
         {messages.map((msg, index) => (

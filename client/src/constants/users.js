@@ -4,7 +4,7 @@ import image from "../constants/image";
 const doctors = [
     {
       name: "Dr. John Doe",
-      specialization: "Urologist",
+      specialization: "Infectious Disease Physician",
       credentials: "Credentials",
       hospital: "ABC Hospital",
       email: "johndoe@gmail.com",
